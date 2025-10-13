@@ -116,18 +116,8 @@ bun run db:reset:local
 
 ## 🚢 Deployment
 
-### Deploy to Cloudflare
-
-```bash
-bun run deploy           # Production
-bun run deploy:preview   # Preview environment
-```
-
-### Build for Cloudflare
-
-```bash
-bun run build:cf
-```
+github set Action!!!!
+bun run cf:secret <SECRET_NAME>
 
 ## 🛠️ Other Useful Commands
 
