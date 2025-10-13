@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1757850562913,
-      "tag": "0000_initial_schemas_migration",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1759590823785,
-      "tag": "0001_lame_umar",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1759639517072,
-      "tag": "0002_watery_living_mummy",
+      "when": 1760333984405,
+      "tag": "0000_happy_shiver_man",
       "breakpoints": true
     }
   ]
