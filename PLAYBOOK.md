@@ -20,19 +20,40 @@ cp .dev.vars.example .dev.vars
 
 Then edit `.dev.vars` with your actual API keys and configuration.
 
-### 2. Install Dependencies
+### 2. Configure Cloudflare Database ID
+
+Update the `database_id` in `wrangler.jsonc` with your own Cloudflare D1 database ID:
+
+```jsonc
+"d1_databases": [
+    {
+        "binding": "DB",
+        "database_name": "wild-voice-db",
+        "database_id": "your-actual-database-id-here", // ← Replace this
+        "migrations_dir": "./src/drizzle"
+    }
+]
+```
+
+You can find your database ID in the Cloudflare dashboard or by running:
+
+```bash
+wrangler d1 list
+```
+
+### 3. Install Dependencies
 
 ```bash
 bun install
 ```
 
-### 3. Generate Database Schema
+### 4. Generate Database Schema
 
 ```bash
 bun run db:generate
 ```
 
-### 4. Run Database Migrations
+### 5. Run Database Migrations
 
 For local development:
 
@@ -44,7 +65,7 @@ For other environments:
 - Preview: `bun run db:migrate:preview`
 - Production: `bun run db:migrate:prod`
 
-### 5. Kill Conflicting Ports (if needed)
+### 6. Kill Conflicting Ports (if needed)
 
 If ports 3000-3005 are already in use:
 
@@ -52,7 +73,7 @@ If ports 3000-3005 are already in use:
 kill -9 $(lsof -t -i:3000-3005)
 ```
 
-### 6. Run the Development Server
+### 7. Run the Development Server
 
 Choose one of the following:
 
