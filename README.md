@@ -408,6 +408,11 @@ Go to your GitHub repository → Settings → Secrets and add:
 - `GOOGLE_CLIENT_SECRET` - Your Google client secret
 - `CLOUDFLARE_R2_URL` - Your R2 bucket URL
 
+```bash
+# Sync the above secrets automatically from .dev.vars
+pnpm run secrets:sync:gh
+```
+
 **Deploy Production Database:**
 ```bash
 # Apply migrations to production
@@ -641,6 +646,14 @@ pnpm run cf-typegen
 ```
 
 ### Production Secrets Management
+Run the helper to populate the required secrets from `.dev.vars`:
+
+```bash
+pnpm run secrets:sync:cf
+```
+
+Prefer the manual approach? Use Wrangler directly:
+
 ```bash
 # Add secrets to production environment
 pnpm run cf:secret BETTER_AUTH_SECRET
@@ -675,6 +688,13 @@ Push to `main` branch triggers automatic deployment via GitHub Actions:
 git add .
 git commit -m "feat: add new feature"
 git push origin main
+```
+
+Use the combined helper when you need to refresh both sets of secrets:
+
+```bash
+# Keep GitHub Actions and Cloudflare secrets in sync
+pnpm run secrets:sync
 ```
 
 **Deployment Pipeline:**

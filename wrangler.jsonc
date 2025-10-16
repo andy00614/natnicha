@@ -18,7 +18,7 @@
     "d1_databases": [
         {
             "binding": "next_cf_app",
-            "database_name": "next-cf-app",
+            "database_name": "naticha_d1",
             "database_id": "757a32d1-5779-4f09-bcf3-b268013395d4",
             "migrations_dir": "./src/drizzle"
         }
@@ -26,7 +26,7 @@
     "r2_buckets": [
         {
             "bucket_name": "next-cf-app-bucket",
-            "binding": "next_cf_app_bucket",
+            "binding": "natnicha",
             "preview_bucket_name": "next-cf-app-dev-bucket"
         }
     ],
