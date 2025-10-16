@@ -19,7 +19,7 @@
         {
             "binding": "DB",
             "database_name": "natnicha-d1",
-            "database_id": "757a32d1-5779-4f09-bcf3-b268013395d4",
+            "database_id": "fb4bff26-8cdd-48a9-9cd4-d3b592fb4bff",
             "migrations_dir": "./src/drizzle"
         }
     ],
