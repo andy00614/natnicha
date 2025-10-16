@@ -17,16 +17,17 @@
     },
     "d1_databases": [
         {
-            "binding": "DB",
-            "database_name": "wild-voice-db",
-            "database_id": "c529e102-647f-421c-a9b9-2cbf9ea6e4b9",
+            "binding": "next_cf_app",
+            "database_name": "DB",
+            "database_id": "757a32d1-5779-4f09-bcf3-b268013395d4",
             "migrations_dir": "./src/drizzle"
         }
     ],
     "r2_buckets": [
         {
-            "bucket_name": "wild-voice-files",
-            "binding": "FILES"
+            "bucket_name": "next-cf-app-bucket",
+            "binding": "FILES",
+            "preview_bucket_name": "next-cf-app-dev-bucket"
         }
     ]
 }

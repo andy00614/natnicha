@@ -1,18 +1,22 @@
+import * as fs from "node:fs";
 import { defineConfig } from "drizzle-kit";
 import path from "path";
-import * as fs from "node:fs";
 
-export function getLocalD1DB() {
+function getLocalD1DB() {
     try {
         const basePath = path.resolve(".wrangler");
         const dbFile = fs
             .readdirSync(basePath, { encoding: "utf-8", recursive: true })
             .find((f) => f.endsWith(".sqlite"));
 
-        const url = path.resolve(basePath, dbFile || "");
-        return url;
+        if (!dbFile) {
+            return undefined;
+        }
+
+        return path.resolve(basePath, dbFile);
     } catch (error) {
         console.error("Error reading local D1 database file:", error);
+        return undefined;
     }
 }
 
@@ -21,6 +25,6 @@ export default defineConfig({
     out: "./src/drizzle",
     dialect: "sqlite",
     dbCredentials: {
-        url: getLocalD1DB()!,
+        url: getLocalD1DB() || "file:./dev.db",
     },
 });
