@@ -738,6 +738,61 @@ pnpm run deploy:preview
 
 Contributions are welcome! Please feel free to submit issues and pull requests.
 
+## 📋 Roadmap & TODO
+
+### 🔴 P0 - Critical (Must Have for Production-Ready Scaffold)
+
+- [ ] **Testing Framework**
+  - [ ] Setup Vitest + @testing-library/react
+  - [ ] Add @cloudflare/vitest-pool-workers for Workers testing
+  - [ ] Create test examples for auth module
+  - [ ] Add test coverage reporting
+  - [ ] Integrate tests into CI/CD pipeline
+
+- [ ] **Environment Variable Validation**
+  - [ ] Create `src/lib/env.ts` with Zod schema validation
+  - [ ] Validate all required env vars at startup
+  - [ ] Add helpful error messages for missing/invalid vars
+  - [ ] Document all environment variables
+
+- [ ] **Error Monitoring**
+  - [ ] Integrate Sentry for error tracking
+  - [ ] Add client-side error boundary
+  - [ ] Configure source maps for production
+  - [ ] Set up error alerts and notifications
+
+### 🟡 P1 - High Priority (Strongly Recommended)
+
+- [ ] **CLI Scaffolding Tool**
+  - [ ] Create `create-wild-ai-app` package
+  - [ ] Add interactive project setup wizard
+  - [ ] Template customization options
+  - [ ] Auto-configure Cloudflare resources
+
+- [ ] **Rate Limiting**
+  - [ ] Implement per-user rate limiting
+  - [ ] Add per-IP rate limiting for public endpoints
+  - [ ] Configure limits for different user tiers
+  - [ ] Add rate limit headers to responses
+
+- [ ] **Structured Logging**
+  - [ ] Replace console.log with structured logger (pino)
+  - [ ] Add request ID tracking
+  - [ ] Configure log levels per environment
+  - [ ] Set up log aggregation (if needed)
+
+### 🟢 P2 - Nice to Have (Optional Enhancements)
+
+- [ ] **Permissions & RBAC** - Role-based access control system
+- [ ] **Email Service** - Transactional emails via Cloudflare Email Workers
+- [ ] **i18n Support** - Multi-language support with next-intl
+- [ ] **Performance Monitoring** - Cloudflare Analytics Engine integration
+- [ ] **Storybook** - Component documentation and visual testing
+- [ ] **Git Hooks** - Husky + lint-staged for pre-commit checks
+- [ ] **Database Seeding** - Scripts for local and production data seeding
+
+---
+
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

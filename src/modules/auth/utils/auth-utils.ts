@@ -23,11 +23,7 @@ async function getAuth() {
     const { env } = await getCloudflareContext();
     const db = await getDb();
 
-    const baseURL = env.BETTER_AUTH_URL || "http://localhost:3000";
-    console.log("🔧 Initializing Better Auth with baseURL:", baseURL);
-
     cachedAuth = betterAuth({
-        baseURL,
         secret: env.BETTER_AUTH_SECRET,
         database: drizzleAdapter(db, {
             provider: "sqlite",
