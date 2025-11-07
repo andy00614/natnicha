@@ -4,7 +4,7 @@
  */
 {
     "$schema": "node_modules/wrangler/config-schema.json",
-    "name": "natnicha",
+    "name": "wild-ai-lib",
     "main": ".open-next/worker.js",
     "compatibility_date": "2025-10-13",
     "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -18,14 +18,14 @@
     "d1_databases": [
         {
             "binding": "DB",
-            "database_name": "natnicha-d1",
-            "database_id": "fb4bff26-8cdd-48a9-9cd4-d3b592fb4bff",
+            "database_name": "wild-ai-lib-db",
+            "database_id": "d3ea093d-a771-4501-b548-5c107514c0e2",
             "migrations_dir": "./src/drizzle"
         }
     ],
     "r2_buckets": [
         {
-            "bucket_name": "natnicha",
+            "bucket_name": "wild-ai-lib-bucket",
             "binding": "FILES",
             "preview_bucket_name": "next-cf-app-dev-bucket"
         }

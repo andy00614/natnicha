@@ -149,7 +149,6 @@ Edit `.dev.vars` with your credentials:
 ```bash
 # Cloudflare Configuration
 CLOUDFLARE_ACCOUNT_ID=your-account-id
-CLOUDFLARE_D1_TOKEN=your-api-token
 
 # Authentication Secrets
 BETTER_AUTH_SECRET=your-random-secret-here
@@ -329,7 +328,6 @@ openssl rand -base64 32
 ```bash
 # .dev.vars for local development
 CLOUDFLARE_ACCOUNT_ID=your-account-id
-CLOUDFLARE_D1_TOKEN=your-api-token
 BETTER_AUTH_SECRET=your-generated-secret
 GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=your-google-client-secret
@@ -747,3 +745,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 © 2025 Muhammad Arifin. All rights reserved.
+
+
+## for myself
+从上游获取最新更改：
+git fetch upstream
+将你的改动提交到上游仓库：
+# 创建新分支用于提交 PR
+git checkout -b feature/your-improvement
+
+# 提交你的更改
+git add .
+git commit -m "feat: your improvement description"
+
+# 推送到上游
+git push upstream feature/your-improvement
+保持与上游同步：
+git fetch upstream
+git merge upstream/main  # 或 upstream/master
