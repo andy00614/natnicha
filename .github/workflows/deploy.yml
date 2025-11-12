@@ -51,6 +51,9 @@ jobs:
       - name: Lint code
         run: pnpm lint
 
+      - name: Run unit tests
+        run: pnpm test:run
+
       - name: Build application
         run: pnpm run preview:cf
         env:
@@ -139,6 +142,9 @@ jobs:
 
       - name: Lint code
         run: pnpm lint
+
+      - name: Run unit tests
+        run: pnpm test:run
 
       - name: Build application
         run: pnpm run build:cf
