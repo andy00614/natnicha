@@ -45,6 +45,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      - name: TypeScript type check
+        run: pnpm type-check
+
+      - name: Lint code
+        run: pnpm lint
+
       - name: Build application
         run: pnpm run preview:cf
         env:
@@ -127,6 +133,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
+
+      - name: TypeScript type check
+        run: pnpm type-check
+
+      - name: Lint code
+        run: pnpm lint
 
       - name: Build application
         run: pnpm run build:cf

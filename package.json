@@ -28,9 +28,12 @@
         "cf:secret": "npx wrangler secret put",
         "cf-typegen": "pnpm exec wrangler types && pnpm exec wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts",
         "lint": "npx biome format --write",
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "tsc --noEmit --watch",
         "secrets:sync:cf": "node ./scripts/sync-cloudflare-secrets.js",
         "secrets:sync:gh": "node ./scripts/sync-github-secrets.js",
-        "secrets:sync": "pnpm run secrets:sync:cf && pnpm run secrets:sync:gh"
+        "secrets:sync": "pnpm run secrets:sync:cf && pnpm run secrets:sync:gh",
+        "prepare": "husky"
     },
     "dependencies": {
         "@ai-sdk/fal": "^1.0.15",
@@ -71,9 +74,21 @@
         "@types/react-dom": "^19",
         "drizzle-kit": "^0.31.4",
         "httpyac": "^6.16.7",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.2.6",
         "tailwindcss": "^4",
         "tw-animate-css": "^1.3.8",
         "typescript": "^5",
         "wrangler": "^4.35.0"
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "biome format --write",
+            "biome lint --write",
+            "bash -c 'tsc --noEmit'"
+        ],
+        "*.{js,jsx,json,css,md}": [
+            "biome format --write"
+        ]
     }
 }

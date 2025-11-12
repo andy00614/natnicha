@@ -12,6 +12,7 @@ export default async function Page() {
         <div className="container mx-auto px-4 py-4 sm:px-6 sm:py-6">
             <h1 className="mb-4 text-2xl font-bold">
                 Welcome, {session.user.name}
+                Add lint stage done!
             </h1>
         </div>
     );
