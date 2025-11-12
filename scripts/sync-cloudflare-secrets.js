@@ -13,7 +13,9 @@ const REQUIRED_SECRETS = [
 
 const parseDevVars = () => {
     if (!existsSync(DEV_VARS_FILE)) {
-        throw new Error(`Missing ${DEV_VARS_FILE}. Run cp .dev.vars.example .dev.vars to create it.`);
+        throw new Error(
+            `Missing ${DEV_VARS_FILE}. Run cp .dev.vars.example .dev.vars to create it.`,
+        );
     }
 
     const records = {};
@@ -39,7 +41,8 @@ const ensureWrangler = () => {
     });
 
     if (result.error || result.status !== 0) {
-        const message = result.stderr?.toString().trim() || "Wrangler CLI not available";
+        const message =
+            result.stderr?.toString().trim() || "Wrangler CLI not available";
         throw new Error(`${message}. Install it with npm install -g wrangler.`);
     }
 };

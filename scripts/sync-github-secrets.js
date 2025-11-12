@@ -12,12 +12,13 @@ const REQUIRED_SECRETS = [
     "GOOGLE_CLIENT_SECRET",
     "CLOUDFLARE_R2_URL",
 ];
-const REPO_NAME =
-    process.env.GITHUB_REPOSITORY || "andy00614/natnicha";
+const REPO_NAME = process.env.GITHUB_REPOSITORY || "andy00614/natnicha";
 
 const parseDevVars = () => {
     if (!existsSync(DEV_VARS_FILE)) {
-        throw new Error(`Missing ${DEV_VARS_FILE}. Run cp .dev.vars.example .dev.vars to create it.`);
+        throw new Error(
+            `Missing ${DEV_VARS_FILE}. Run cp .dev.vars.example .dev.vars to create it.`,
+        );
     }
 
     const records = {};
@@ -43,7 +44,8 @@ const ensureGitHubCli = () => {
     });
 
     if (result.error || result.status !== 0) {
-        const message = result.stderr?.toString().trim() || "GitHub CLI not available";
+        const message =
+            result.stderr?.toString().trim() || "GitHub CLI not available";
         throw new Error(`${message}. Install it from https://cli.github.com/`);
     }
 };

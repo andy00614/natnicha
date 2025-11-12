@@ -45,18 +45,37 @@ export default defineConfig({
 
     // 测试项目（不同浏览器）
     projects: [
+        // Setup project - 在所有测试之前运行
+        {
+            name: "setup",
+            testMatch: /.*\.setup\.ts/,
+        },
+        // Chromium 测试 - 依赖 setup 项目
         {
             name: "chromium",
-            use: { ...devices["Desktop Chrome"] },
+            use: {
+                ...devices["Desktop Chrome"],
+                // 使用保存的认证状态
+                storageState: "playwright/.auth/user.json",
+            },
+            dependencies: ["setup"],
         },
         // 取消注释以添加更多浏览器
         // {
         //     name: "firefox",
-        //     use: { ...devices["Desktop Firefox"] },
+        //     use: {
+        //         ...devices["Desktop Firefox"],
+        //         storageState: "playwright/.auth/user.json",
+        //     },
+        //     dependencies: ["setup"],
         // },
         // {
         //     name: "webkit",
-        //     use: { ...devices["Desktop Safari"] },
+        //     use: {
+        //         ...devices["Desktop Safari"],
+        //         storageState: "playwright/.auth/user.json",
+        //     },
+        //     dependencies: ["setup"],
         // },
     ],
 
