@@ -23,6 +23,7 @@ import {
 } from "../models/todo.model";
 import { requireAuth } from "@/modules/auth/utils/auth-utils";
 import type { Todo } from "../schemas/todo.schema";
+import type { z } from "zod";
 
 /**
  * Server Action 响应类型
@@ -38,7 +39,7 @@ export type ActionResponse<T = void> = {
  * 创建 Todo
  */
 export async function createTodo(
-    input: TodoCreate,
+    input: z.input<typeof todoCreateSchema>,
 ): Promise<ActionResponse<Todo>> {
     try {
         // 1. 认证检查
@@ -106,7 +107,7 @@ export async function getTodos(options?: {
 
         // 2. 数据库查询
         const db = await getDb();
-        let query = db.select().from(todos).where(eq(todos.userId, user.id));
+        const query = db.select().from(todos).where(eq(todos.userId, user.id));
 
         const allTodos = await query;
 
@@ -147,7 +148,7 @@ export async function getTodos(options?: {
  */
 export async function updateTodo(
     id: string,
-    update: TodoUpdate,
+    update: z.input<typeof todoUpdateSchema>,
 ): Promise<ActionResponse<Todo>> {
     try {
         // 1. 认证检查

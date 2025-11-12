@@ -29,17 +29,21 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { todoCreateSchema, type TodoCreate } from "../models/todo.model";
+import { todoCreateSchema } from "../models/todo.model";
 import { createTodo } from "../actions/todo.action";
+import type { z } from "zod";
 
 interface TodoFormProps {
     onSuccess?: () => void;
 }
 
+// Use z.input to get the form input type (before transformation)
+type TodoFormInput = z.input<typeof todoCreateSchema>;
+
 export function TodoForm({ onSuccess }: TodoFormProps) {
     const [isPending, startTransition] = useTransition();
 
-    const form = useForm<TodoCreate>({
+    const form = useForm<TodoFormInput>({
         resolver: zodResolver(todoCreateSchema),
         defaultValues: {
             title: "",
@@ -49,7 +53,7 @@ export function TodoForm({ onSuccess }: TodoFormProps) {
         },
     });
 
-    const handleSubmit = (data: TodoCreate) => {
+    const handleSubmit = (data: TodoFormInput) => {
         startTransition(async () => {
             try {
                 const result = await createTodo(data);
