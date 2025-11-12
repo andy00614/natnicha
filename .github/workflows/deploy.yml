@@ -54,6 +54,44 @@ jobs:
       - name: Run unit tests
         run: pnpm test:run
 
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Setup test user credentials
+        run: bash tests/setup-test-user.sh
+
+      - name: Setup local D1 database for E2E
+        run: |
+          pnpm db:migrate:local
+          echo "✅ Local D1 database initialized"
+
+      - name: Create E2E test user
+        run: |
+          pnpm dev &
+          DEV_PID=$!
+          echo "Waiting for dev server to start..."
+          npx wait-on http://localhost:3000 --timeout 60000
+          node tests/create-test-user.ts
+          kill $DEV_PID || true
+        env:
+          E2E_TEST_EMAIL: e2e-test@example.com
+          E2E_TEST_PASSWORD: TestPassword123!
+
+      - name: Run E2E tests
+        run: pnpm test:e2e
+        env:
+          CI: true
+          E2E_TEST_EMAIL: e2e-test@example.com
+          E2E_TEST_PASSWORD: TestPassword123!
+
+      - name: Upload E2E test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-preview
+          path: playwright-report/
+          retention-days: 7
+
       - name: Build application
         run: pnpm run preview:cf
         env:
@@ -145,6 +183,44 @@ jobs:
 
       - name: Run unit tests
         run: pnpm test:run
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Setup test user credentials
+        run: bash tests/setup-test-user.sh
+
+      - name: Setup local D1 database for E2E
+        run: |
+          pnpm db:migrate:local
+          echo "✅ Local D1 database initialized"
+
+      - name: Create E2E test user
+        run: |
+          pnpm dev &
+          DEV_PID=$!
+          echo "Waiting for dev server to start..."
+          npx wait-on http://localhost:3000 --timeout 60000
+          node tests/create-test-user.ts
+          kill $DEV_PID || true
+        env:
+          E2E_TEST_EMAIL: e2e-test@example.com
+          E2E_TEST_PASSWORD: TestPassword123!
+
+      - name: Run E2E tests
+        run: pnpm test:e2e
+        env:
+          CI: true
+          E2E_TEST_EMAIL: e2e-test@example.com
+          E2E_TEST_PASSWORD: TestPassword123!
+
+      - name: Upload E2E test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-production
+          path: playwright-report/
+          retention-days: 7
 
       - name: Build application
         run: pnpm run build:cf
